@@ -10,7 +10,7 @@ import schedule
 web3 = Web3(Web3.HTTPProvider("https://rpc-bluetail.renta.network/3v8YuduEcfihmCBksL8U1W98mXbyY7vDv"))
 chainId = web3.eth.chain_id
 
-# Connecting to Web3
+# Menghubungkan ke Web3
 if web3.is_connected():
     print("Web3 Connected...\n")
 else:
@@ -43,14 +43,19 @@ def tapOnchain(sender, key):
             'nonce': nonce
         }
         
-        # Sign and send the transaction
-        tx_hash = web3.eth.send_raw_transaction(web3.eth.account.sign_transaction(tap_tx, key).rawTransaction)
-        # Get transaction hash
+        # Menandatangani transaksi
+        signed_tx = web3.eth.account.sign_transaction(tap_tx, key)
+        
+        # Mengirim transaksi dan mendapatkan hash transaksi
+        tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        
+        # Mendapatkan hash transaksi
         print(f'For Address {sender}')
         print(f'Processing Tap Onchain...')
         web3.eth.wait_for_transaction_receipt(tx_hash)
         print(f'Tap Onchain Success!')
         print(f'TX-ID : {str(web3.to_hex(tx_hash))}')
+        
     except Exception as e:
         print(f"Error: {e}")
         pass

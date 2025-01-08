@@ -86,8 +86,8 @@ def main():
             for pvkey in local_data:
                 sender = web3.eth.account.from_key(pvkey)
                 tap_onchain(sender.address, pvkey)
-        print("Waiting for 120 seconds before the next cycle...\n")
-        time.sleep(120)
+        print("Waiting for 30 seconds before the next cycle...\n")
+        time.sleep(30)  # Waktu tunggu dipercepat menjadi 30 detik
 
 if __name__ == "__main__":
     main()

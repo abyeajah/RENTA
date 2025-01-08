@@ -22,7 +22,7 @@ def tap_onchain(sender, key):
         gas_price = web3.eth.gas_price / 10**9  # Convert Wei to Gwei
         print(f"Current Gas Price: {gas_price} Gwei")
 
-        if gas_price < 2.5:
+        if gas_price < 3.0:
             nonce = web3.eth.get_transaction_count(sender)
             tapaddr = web3.to_checksum_address('0x3280E2F59536991B5726B41B9bEEd613B1E0Be0A')
             data = '0xf482ee72'
@@ -32,7 +32,7 @@ def tap_onchain(sender, key):
                 'from': sender,
                 'to': tapaddr,
                 'data': data,
-                'gasPrice': int(gas_price * 30**9),
+                'gasPrice': int(gas_price * 10**9),
                 'nonce': nonce
             })
 
@@ -42,7 +42,7 @@ def tap_onchain(sender, key):
                 'to': tapaddr,
                 'data': data,
                 'gas': gas_amount,
-                'gasPrice': int(gas_price * 30**9),
+                'gasPrice': int(gas_price * 10**9),
                 'nonce': nonce
             }
 

@@ -73,4 +73,14 @@ def tap_onchain(sender, key):
         pass
 
 def main():
-   
+    while True:
+        with open('pvkeylist.txt', 'r') as file:
+            local_data = file.read().splitlines()
+            for pvkey in local_data:
+                sender = web3.eth.account.from_key(pvkey)
+                tap_onchain(sender.address, pvkey)
+        print("Waiting for 30 seconds before the next cycle...\n")
+        time.sleep(30)  # Waktu tunggu
+
+if __name__ == "__main__":
+    main()

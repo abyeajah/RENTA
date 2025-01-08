@@ -51,7 +51,7 @@ def tapOnchain(sender, key):
         
         # Mendapatkan hash transaksi
         print(f'For Address {sender}')
-        time.sleep(10)
+        time.sleep(1)
         print(f'Processing Tap Onchain...')
         web3.eth.wait_for_transaction_receipt(tx_hash)
         print(f'Tap Onchain Success!')
